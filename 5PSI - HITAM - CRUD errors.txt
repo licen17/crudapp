@@ -1,0 +1,20 @@
+Error:
+1. Android version is not supported
+	error when importing these 2 libraries:
+		import android.support.v7.app.AlertDialog;
+		import android.support.v7.app.AppCompatActivity;
+	how to solve:
+		migrate androidx instead of using v7 and then change the import to:
+		import androidx.appcompat.app.AlertDialog;
+		import androidx.appcompat.app.AppCompatActivity;
+
+2. Activity not found exception
+	error in debug console: 
+		android.content.ActivityNotFoundException: Unable to find explicit activity class {com.example.crud/com.example.crud.TampilSemuaPgw}; have you declared this activity in your AndroidManifest.xml?
+	how to solve:
+		Declare all used activities in AndroidManifest.xml, in this case there 3 activities needed to be declared:
+		<activity android:name=".TampilSemuaPgw"></activity>
+        	<activity android:name=".TampilPegawai"></activity>
+        	<activity android:name=".ListView"></activity>
+
+3. konfigurasi db http di konfigurasi.java menjadi ipv4 lokal (jangan menggunakan localhost / 127.0.0.1)
