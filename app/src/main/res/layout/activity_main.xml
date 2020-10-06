@@ -21,20 +21,29 @@
         android:layout_height="wrap_content"
         android:text="Posisi" />
 
+    <Spinner
+        android:id="@+id/spinnerPosisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextDesg" />
+        android:id="@+id/editTextDesg"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gajih" />
+        android:text="Gajih"
+        android:visibility="gone"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextSalary" />
+        android:id="@+id/editTextSalary"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="match_parent"
@@ -47,5 +56,6 @@
         android:layout_height="wrap_content"
         android:text="Daftar Pegawai"
         android:id="@+id/buttonView" />
+
 
 </LinearLayout>
