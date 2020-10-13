@@ -13,9 +13,10 @@
 		$name = $_POST['name'];
 		$desg = $_POST['desg'];
 		$sal = $_POST['salary'];
+		$sex = $_POST['sex'];
 		
 		//Pembuatan Syntax SQL
-		$sql = "INSERT INTO tb_pegawai (nama,posisi,gajih) VALUES ('$name','$desg','$sal')";
+		$sql = "INSERT INTO tb_pegawai (nama,posisi,gajih,jk) VALUES ('$name','$desg','$sal','$sex')";
 		
 		//Import File Koneksi database
 		require_once('koneksi.php');
