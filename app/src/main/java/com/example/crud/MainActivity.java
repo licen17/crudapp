@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonView;
 
     Spinner spinnerPosisi;
+    String radioButton;
 
     ArrayList<String> posisiList = new ArrayList<>();
     ArrayList<String> gajihList = new ArrayList<>();
@@ -68,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         requestQueue = Volley.newRequestQueue(this);
         spinnerPosisi = findViewById(R.id.spinnerPosisi);
-        String url = "http://192.168.1.27/Android/pegawai/getPosisi.php";
+
+        String url = konfigurasi.URL_GET_POSISI;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -97,6 +100,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_male:
+                if (checked)
+                    radioButton = "LK";
+                    break;
+            case R.id.radio_female:
+                if (checked)
+                    radioButton = "PR";
+                    break;
+        }
+    }
 
     //Dibawah ini merupakan perintah untuk Menambahkan Pegawai (CREATE)
     private void addEmployee(){
@@ -106,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        final String desg = editTextDesg.getText().toString().trim();
         final String sal = gajihList.get((int) spinnerPosisi.getSelectedItemId()).trim();
 //        final String sal = editTextSal.getText().toString().trim();
+        final String sex = radioButton;
 
         class AddEmployee extends AsyncTask<Void,Void,String>{
 
@@ -130,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put(konfigurasi.KEY_EMP_NAMA,name);
                 params.put(konfigurasi.KEY_EMP_POSISI,desg);
                 params.put(konfigurasi.KEY_EMP_GAJIH,sal);
+                params.put(konfigurasi.KEY_EMP_JK,sex);
 
                 RequestHandler rh = new RequestHandler();
                 String res = rh.sendPostRequest(konfigurasi.URL_ADD, params);
